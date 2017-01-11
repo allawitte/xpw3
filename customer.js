@@ -10,7 +10,9 @@ class Customer {
     }
 
     get rentals(){
-        return this._data.rentals;
+        return this._data.rentals
+            .map(rental => new Rentals(rental));
+
     }
 }
 
