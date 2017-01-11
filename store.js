@@ -31,17 +31,9 @@ function txtStatement(customerArr, movies) {
 
     const builder = new txtBuilder(customerArr, movies);
 
-    function buildFooter() {
-        return builder.buildFooter;
-        // let statement = '';
-        // statement += `Amount owed is ${customer.totalAmount}\n`;
-        // statement += `You earned ${customer.totalFrequentRenterPoints} frequent renter points\n`;
-        // return statement;
-    }
-
     let statement = builder.buildHeader;
     statement += builder.buildBody;
-    statement += buildFooter();
+    statement += builder.buildFooter;
     return statement;
 }
 
