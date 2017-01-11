@@ -19,6 +19,11 @@ class htmlBuilder {
         result += "</table>\n";
         return result;
     }
+    get buildFooter(){
+        let result = `<p>Amount owed is <em>${(() => this._customer.totalAmount)()}</em></p>\n`;
+        result += `<p>You earned <em>${(() => this._customer.totalFrequentRenterPoints)()}</em> frequent renter points</p>\n`;
+        return result;
+    }
 }
 function txtStatement(customerArr, movies) {
 
@@ -35,10 +40,7 @@ function htmlStatement(customerArr, movies) {
     const builder = new htmlBuilder(customer, movies);
     let result = htmlBuilder.buildHeader;
     result += builder.buildBody;
-
-
-    result += `<p>Amount owed is <em>${(() => customer.totalAmount)()}</em></p>\n`;
-    result += `<p>You earned <em>${(() => customer.totalFrequentRenterPoints)()}</em> frequent renter points</p>\n`;
+    result += builder.buildFooter;
     return result;
 }
 
