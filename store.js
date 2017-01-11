@@ -28,7 +28,8 @@ function getAmount(rental) {
 }
 
 function getFrequentRenterPoints(rental) {
-    return (rental.movie.code === "new" && rental.days > 2) ? 2 : 1;
+    return rental.frequentRenterPoints;
+    //return (rental.movie.code === "new" && rental.days > 2) ? 2 : 1;
 }
 
 function getTotalFrequentRenterPoints(customer) {
