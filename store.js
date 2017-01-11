@@ -24,16 +24,6 @@ function txtStatement(customerArr, movies) {
     const customer = new Customer(customerArr, movies);
     const builder = new txtBuilder(customerArr, movies);
 
-    function buildBody() {
-        return builder.buildBody;
-        // let statement = '';
-        // for (let rental of customer.rentals) {
-        //     statement += `\t${rental.movie.title}\t${rental.amount}\n`;
-        // }
-        //
-        // return statement;
-    }
-
     function buildFooter() {
         let statement = '';
         statement += `Amount owed is ${customer.totalAmount}\n`;
@@ -42,7 +32,7 @@ function txtStatement(customerArr, movies) {
     }
 
     let statement = builder.buildHeader;
-    statement += buildBody();
+    statement += builder.buildBody;
     statement += buildFooter();
     return statement;
 }
