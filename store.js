@@ -4,6 +4,14 @@ class Customer {
     constructor(data){
         this._data = data;
     }
+
+    get name(){
+        return this._data.name;
+    }
+
+    get rentals(){
+        return this._data.rentals;
+    }
 }
 
 function movieFor(rental) {
@@ -57,7 +65,8 @@ function getTotalAmount(customer) {
     return totalAmount;
 }
 
-function txtStatement(customer) {
+function txtStatement(customerArr) {
+    const customer = new Customer(customerArr);
     function buildHeader() {
         return `Rental Record for ${customer.name}\n`;
     }
