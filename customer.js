@@ -1,5 +1,5 @@
 'use strict';
-
+const Rentals = require('./rental');
 class Customer {
     constructor(data){
         this._data = data;
@@ -16,17 +16,6 @@ class Customer {
     }
 }
 
-class Rentals {
-    constructor(data){
-        this._data = data;
-    }
-    get movieID(){
-        return this._data.movieID
-    }
-    get days(){
-        return this._data.days;
-    }
-}
 
 module.exports = Customer;
 /**
