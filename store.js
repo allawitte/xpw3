@@ -1,6 +1,6 @@
 'use strict';
 
-const Customer = required('./customer');
+const Customer = require('./customer');
 function movieFor(rental) {
     return movies[rental.movieID];
 }
