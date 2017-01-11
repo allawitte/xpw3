@@ -2,7 +2,7 @@
 
 const Customer = require('./customer');
 function movieFor(rental) {
-    return movies[rental.movieID];
+    return rental.movie;
 }
 
 function getAmount(rental) {
@@ -52,8 +52,8 @@ function getTotalAmount(customer) {
     return totalAmount;
 }
 
-function txtStatement(customerArr) {
-    const customer = new Customer(customerArr);
+function txtStatement(customerArr, movies) {
+    const customer = new Customer(customerArr, movies);
     function buildHeader() {
         return `Rental Record for ${customer.name}\n`;
     }
@@ -80,7 +80,8 @@ function txtStatement(customerArr) {
     return statement;
 }
 
-function htmlStatement(customer) {
+function htmlStatement(customerArr, movies) {
+    const customer = new Customer(customerArr, movies);
     const amount = () => getTotalAmount(customer);
     const frequentRenterPoints = () => getTotalFrequentRenterPoints(customer);
     const movie = (aRental) => movieFor(aRental);
@@ -119,8 +120,8 @@ let movies = {
     }
 };
 
-console.log(txtStatement(customer));
-console.log(htmlStatement(customer));
+console.log(txtStatement(customer, movies));
+console.log(htmlStatement(customer, movies));
 /**
  * Created by HP on 1/11/2017.
  */

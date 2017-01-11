@@ -1,8 +1,9 @@
 'use strict';
 const Rentals = require('./rental');
 class Customer {
-    constructor(data){
+    constructor(data, movies){
         this._data = data;
+        this._movies = movies;
     }
 
     get name(){
@@ -11,7 +12,7 @@ class Customer {
 
     get rentals(){
         return this._data.rentals
-            .map(rental => new Rentals(rental));
+            .map(rental => new Rentals(rental, this._movies));
 
     }
 }
