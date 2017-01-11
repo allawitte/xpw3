@@ -1,32 +1,17 @@
 'use strict';
 
 const Customer = require('./customer');
- class txtBuilder {
-     constructor(customer, movies){
-         this._customer = new Customer(customer, movies);
-         this._movies = movies;
-     }
-     get buildHeader(){
-         return `Rental Record for ${this._customer.name}\n`;
-     }
-     get buildBody(){
-         let statement = '';
-         for (let rental of this._customer.rentals) {
-             statement += `\t${rental.movie.title}\t${rental.amount}\n`;
-         }
+const txtBuilder = require('./txtBuilder');
 
-         return statement;
-
-     }
-     get buildFooter(){
-         let statement = '';
-         statement += `Amount owed is ${this._customer.totalAmount}\n`;
-         statement += `You earned ${this._customer.totalFrequentRenterPoints} frequent renter points\n`;
-         return statement;
-
-     }
- }
-
+class htmlBuilder {
+    constructor(customer, movies){
+        this._customer = new Customer(customer, movies);
+        this._movies = movies;
+    }
+    get buildHeader(){
+        return `<h1>Rental Record for <em>${customer.name}</em></h1>\n`;
+    }
+}
 function txtStatement(customerArr, movies) {
 
     const builder = new txtBuilder(customerArr, movies);
@@ -39,11 +24,13 @@ function txtStatement(customerArr, movies) {
 
 function htmlStatement(customerArr, movies) {
     const customer = new Customer(customerArr, movies);
+    const builder = new htmlBuilder(customer, movies);
     const amount = () => customer.totalAmount;
     const frequentRenterPoints = () => customer.totalFrequentRenterPoints;
     const movie = (aRental) => aRental.movie;
     const rentalAmount = (aRental) => aRental.amount;
-    let result = `<h1>Rental Record for <em>${customer.name}</em></h1>\n`;
+    
+    let result = builder.buildHeader;
     result += "<table>\n";
     for (let rental of customer.rentals) {
         result += `  <tr><td>${movie(rental).title}</td><td>${rentalAmount(rental)}</td></tr>\n`;
