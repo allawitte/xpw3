@@ -1,5 +1,10 @@
 'use strict';
-"use strict";
+
+class Customer {
+    constructor(data){
+        this._data = data;
+    }
+}
 
 function movieFor(rental) {
     return movies[rental.movieID];
