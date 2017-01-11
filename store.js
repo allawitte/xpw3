@@ -2,12 +2,21 @@
 
 const Customer = require('./customer');
  class txtBuilder {
-     constructor(customers, movies){
-         this._customers = customers;
+     constructor(customer, movies){
+         this._customer = new Customer(customer, movies);
          this._movies = movies;
      }
      get buildHeader(){
-         return `Rental Record for ${customer.name}\n`;
+         return `Rental Record for ${this._customer.name}\n`;
+     }
+     get buildBody(){
+         let statement = '';
+         for (let rental of this._customer.rentals) {
+             statement += `\t${rental.movie.title}\t${rental.amount}\n`;
+         }
+
+         return statement;
+
      }
  }
 
@@ -16,12 +25,13 @@ function txtStatement(customerArr, movies) {
     const builder = new txtBuilder(customerArr, movies);
 
     function buildBody() {
-        let statement = '';
-        for (let rental of customer.rentals) {
-            statement += `\t${rental.movie.title}\t${rental.amount}\n`;
-        }
-
-        return statement;
+        return builder.buildBody;
+        // let statement = '';
+        // for (let rental of customer.rentals) {
+        //     statement += `\t${rental.movie.title}\t${rental.amount}\n`;
+        // }
+        //
+        // return statement;
     }
 
     function buildFooter() {
