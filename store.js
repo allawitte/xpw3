@@ -14,10 +14,6 @@ const Customer = require('./customer');
 function txtStatement(customerArr, movies) {
     const customer = new Customer(customerArr, movies);
     const builder = new txtBuilder(customerArr, movies);
-    function buildHeader() {
-        return builder.buildHeader;
-        //return `Rental Record for ${customer.name}\n`;
-    }
 
     function buildBody() {
         let statement = '';
@@ -35,7 +31,7 @@ function txtStatement(customerArr, movies) {
         return statement;
     }
 
-    let statement = buildHeader();
+    let statement = builder.buildHeader;
     statement += buildBody();
     statement += buildFooter();
     return statement;
