@@ -1,4 +1,25 @@
 'use strict';
+class Calculator {
+    get amountForChildren() {
+        let amount = 1.5;
+        if (this.days > 3) {
+            amount += (this.days - 3) * 1.5;
+        }
+        return amount;
+    }
+
+    get amountForNew() {
+        return this.days * 3;
+    }
+
+    get amountForRegular() {
+        let amount = 2;
+        if (this.days > 2) {
+            amount += (this.days - 2) * 1.5;
+        }
+        return amount;
+    }
+}
 class Rentals {
     constructor(data, movies){
         this._data = data;
@@ -24,18 +45,27 @@ class Rentals {
                 amount = this.amountForRegular();
                 break;
             case "new":
-                amount = this.days * 3;
+                amount = this.amountForNew();
                 break;
             case "childrens":
-                amount = 1.5;
-                if (this.days > 3) {
-                    amount += (this.days - 3) * 1.5;
-                }
+                amount = this.amountForChildren();
                 break;
         }
 
         return amount;
 
+    }
+
+    amountForChildren() {
+        let amount = 1.5;
+        if (this.days > 3) {
+            amount += (this.days - 3) * 1.5;
+        }
+        return amount;
+    }
+
+    amountForNew() {
+        return this.days * 3;
     }
 
     amountForRegular() {
