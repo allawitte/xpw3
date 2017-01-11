@@ -1,11 +1,22 @@
 'use strict';
 
 const Customer = require('./customer');
+ class txtBuilder {
+     constructor(customers, movies){
+         this._customers = customers;
+         this._movies = movies;
+     }
+     get buildHeader(){
+         return `Rental Record for ${customer.name}\n`;
+     }
+ }
 
 function txtStatement(customerArr, movies) {
     const customer = new Customer(customerArr, movies);
+    const builder = new txtBuilder(customerArr, movies);
     function buildHeader() {
-        return `Rental Record for ${customer.name}\n`;
+        return builder.buildHeader;
+        //return `Rental Record for ${customer.name}\n`;
     }
 
     function buildBody() {
