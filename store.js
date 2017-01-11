@@ -18,17 +18,25 @@ const Customer = require('./customer');
          return statement;
 
      }
+     get buildFooter(){
+         let statement = '';
+         statement += `Amount owed is ${this._customer.totalAmount}\n`;
+         statement += `You earned ${this._customer.totalFrequentRenterPoints} frequent renter points\n`;
+         return statement;
+
+     }
  }
 
 function txtStatement(customerArr, movies) {
-    const customer = new Customer(customerArr, movies);
+
     const builder = new txtBuilder(customerArr, movies);
 
     function buildFooter() {
-        let statement = '';
-        statement += `Amount owed is ${customer.totalAmount}\n`;
-        statement += `You earned ${customer.totalFrequentRenterPoints} frequent renter points\n`;
-        return statement;
+        return builder.buildFooter;
+        // let statement = '';
+        // statement += `Amount owed is ${customer.totalAmount}\n`;
+        // statement += `You earned ${customer.totalFrequentRenterPoints} frequent renter points\n`;
+        // return statement;
     }
 
     let statement = builder.buildHeader;
