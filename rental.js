@@ -1,8 +1,9 @@
 'use strict';
 class Calculator {
-    constructor(days){
+    constructor(days) {
         this._days = days;
     }
+
     get amountForChildren() {
         let amount = 1.5;
         if (this._days > 3) {
@@ -24,39 +25,37 @@ class Calculator {
     }
 }
 class Rentals {
-    constructor(data, movies){
+    constructor(data, movies) {
         this._data = data;
         this._movies = movies;
     }
-    get movieID(){
+
+    get movieID() {
         return this._data.movieID
     }
-    get days(){
+
+    get days() {
         return this._data.days;
     }
-    get movie(){
+
+    get movie() {
         return this._movies[this.movieID];
     }
-    get frequentRenterPoints(){
+
+    get frequentRenterPoints() {
         return (this.movie.code === "new" && this.days > 2) ? 2 : 1;
     }
-    get amount(){
-        let amount = 0;
-        const calculator = new Calculator(this.days);
-        // determine amount for each movie
-        switch (this.movie.code) {
-            case "regular":
-                amount = calculator.amountForRegular;
-                break;
-            case "new":
-                amount = calculator.amountForNew;
-                break;
-            case "childrens":
-                amount = calculator.amountForChildren;
-                break;
-        }
 
-        return amount;
+    get amount() {
+        const calculator = new Calculator(this.days);
+        const amount = {
+            "regular": calculator.amountForRegular,
+
+            "new": calculator.amountForNew,
+
+            "childrens": calculator.amountForChildren
+        };
+        return amount[this.movie.code];
 
     }
 
