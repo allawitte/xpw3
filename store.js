@@ -11,6 +11,9 @@ class htmlBuilder {
     get buildHeader(){
         return `<h1>Rental Record for <em>${customer.name}</em></h1>\n`;
     }
+    get buildBody(){
+
+    }
 }
 function txtStatement(customerArr, movies) {
 
@@ -25,19 +28,15 @@ function txtStatement(customerArr, movies) {
 function htmlStatement(customerArr, movies) {
     const customer = new Customer(customerArr, movies);
     const builder = new htmlBuilder(customer, movies);
-    const amount = () => customer.totalAmount;
-    const frequentRenterPoints = () => customer.totalFrequentRenterPoints;
-    const movie = (aRental) => aRental.movie;
-    const rentalAmount = (aRental) => aRental.amount;
-    
     let result = builder.buildHeader;
     result += "<table>\n";
     for (let rental of customer.rentals) {
-        result += `  <tr><td>${movie(rental).title}</td><td>${rentalAmount(rental)}</td></tr>\n`;
+        result += `  <tr><td>${((aRental) => aRental.movie)(rental).title}</td><td>${((aRental) => aRental.amount)(rental)}</td></tr>\n`;
     }
     result += "</table>\n";
-    result += `<p>Amount owed is <em>${amount()}</em></p>\n`;
-    result += `<p>You earned <em>${frequentRenterPoints()}</em> frequent renter points</p>\n`;
+
+    result += `<p>Amount owed is <em>${(() => customer.totalAmount)()}</em></p>\n`;
+    result += `<p>You earned <em>${(() => customer.totalFrequentRenterPoints)()}</em> frequent renter points</p>\n`;
     return result;
 }
 
