@@ -1,30 +1,28 @@
 'use strict';
 const Rentals = require('./rental');
 class Customer {
-    constructor(data, movies){
+    constructor(data, movies) {
         this._data = data;
         this._movies = movies;
     }
 
-    get name(){
+    get name() {
         return this._data.name;
     }
 
-    get rentals(){
+    get rentals() {
         return this._data.rentals
             .map(rental => new Rentals(rental, this._movies));
 
     }
-    get totalFrequentRenterPoints(){
-        let totalFrequentRenterPoints = 0;
-        for (let rental of this.rentals) {
-            totalFrequentRenterPoints += rental.frequentRenterPoints;
-        }
 
-        return totalFrequentRenterPoints;
-
+    get totalFrequentRenterPoints() {
+        return this.rentals
+            .map(rental => rental.frequentRenterPoints)
+            .reduce((sum, value) => sum + value, 0);
     }
-    get totalAmount(){
+
+    get totalAmount() {
         return this.rentals
             .reduce((sum, rental) => sum + rental.amount, 0);
     }
