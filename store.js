@@ -3,28 +3,29 @@
 const Customer = require('./customer');
 
 function getAmount(rental) {
-    let movie = rental.movie;
-    let amount = 0;
-    // determine amount for each movie
-    switch (movie.code) {
-        case "regular":
-            amount = 2;
-            if (rental.days > 2) {
-                amount += (rental.days - 2) * 1.5;
-            }
-            break;
-        case "new":
-            amount = rental.days * 3;
-            break;
-        case "childrens":
-            amount = 1.5;
-            if (rental.days > 3) {
-                amount += (rental.days - 3) * 1.5;
-            }
-            break;
-    }
-
-    return amount;
+    return rental.amount;
+    // let movie = rental.movie;
+    // let amount = 0;
+    // // determine amount for each movie
+    // switch (movie.code) {
+    //     case "regular":
+    //         amount = 2;
+    //         if (rental.days > 2) {
+    //             amount += (rental.days - 2) * 1.5;
+    //         }
+    //         break;
+    //     case "new":
+    //         amount = rental.days * 3;
+    //         break;
+    //     case "childrens":
+    //         amount = 1.5;
+    //         if (rental.days > 3) {
+    //             amount += (rental.days - 3) * 1.5;
+    //         }
+    //         break;
+    // }
+    //
+    // return amount;
 }
 
 function getTotalFrequentRenterPoints(customer) {
