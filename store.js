@@ -3,12 +3,12 @@
 const Customer = require('./customer');
 
 function getTotalAmount(customer) {
-    let totalAmount = 0;
-    for (let rental of customer.rentals) {
-        totalAmount += rental.amount;
-    }
-
-    return totalAmount;
+    // let totalAmount = 0;
+    // for (let rental of customer.rentals) {
+    //     totalAmount += rental.amount;
+    // }
+    //
+     return customer.totalAmount;
 }
 
 function txtStatement(customerArr, movies) {
