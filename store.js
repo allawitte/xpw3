@@ -2,32 +2,6 @@
 
 const Customer = require('./customer');
 
-function getAmount(rental) {
-    return rental.amount;
-    // let movie = rental.movie;
-    // let amount = 0;
-    // // determine amount for each movie
-    // switch (movie.code) {
-    //     case "regular":
-    //         amount = 2;
-    //         if (rental.days > 2) {
-    //             amount += (rental.days - 2) * 1.5;
-    //         }
-    //         break;
-    //     case "new":
-    //         amount = rental.days * 3;
-    //         break;
-    //     case "childrens":
-    //         amount = 1.5;
-    //         if (rental.days > 3) {
-    //             amount += (rental.days - 3) * 1.5;
-    //         }
-    //         break;
-    // }
-    //
-    // return amount;
-}
-
 function getTotalFrequentRenterPoints(customer) {
     let totalFrequentRenterPoints = 0;
     for (let rental of customer.rentals) {
@@ -40,7 +14,7 @@ function getTotalFrequentRenterPoints(customer) {
 function getTotalAmount(customer) {
     let totalAmount = 0;
     for (let rental of customer.rentals) {
-        totalAmount += getAmount(rental);
+        totalAmount += rental.amount;
     }
 
     return totalAmount;
@@ -55,7 +29,7 @@ function txtStatement(customerArr, movies) {
     function buildBody() {
         let statement = '';
         for (let rental of customer.rentals) {
-            statement += `\t${rental.movie.title}\t${getAmount(rental)}\n`;
+            statement += `\t${rental.movie.title}\t${rental.amount}\n`;
         }
 
         return statement;
@@ -79,8 +53,7 @@ function htmlStatement(customerArr, movies) {
     const amount = () => getTotalAmount(customer);
     const frequentRenterPoints = () => getTotalFrequentRenterPoints(customer);
     const movie = (aRental) => aRental.movie;
-    const rentalAmount = (aRental) => getAmount(aRental);
-
+    const rentalAmount = (aRental) => aRental.amount;
     let result = `<h1>Rental Record for <em>${customer.name}</em></h1>\n`;
     result += "<table>\n";
     for (let rental of customer.rentals) {
