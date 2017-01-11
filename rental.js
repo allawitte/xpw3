@@ -17,10 +17,9 @@ class Rentals {
         return (this.movie.code === "new" && this.days > 2) ? 2 : 1;
     }
     get amount(){
-        let movie = this.movie;
         let amount = 0;
         // determine amount for each movie
-        switch (movie.code) {
+        switch (this.movie.code) {
             case "regular":
                 amount = 2;
                 if (this.days > 2) {
