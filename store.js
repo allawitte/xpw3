@@ -2,16 +2,6 @@
 
 const Customer = require('./customer');
 
-function getTotalFrequentRenterPoints(customer) {
-    return customer.totalFrequentRenterPoints;
-    // let totalFrequentRenterPoints = 0;
-    // for (let rental of customer.rentals) {
-    //     totalFrequentRenterPoints += rental.frequentRenterPoints;
-    // }
-    //
-    // return totalFrequentRenterPoints;
-}
-
 function getTotalAmount(customer) {
     let totalAmount = 0;
     for (let rental of customer.rentals) {
@@ -39,7 +29,7 @@ function txtStatement(customerArr, movies) {
     function buildFooter() {
         let statement = '';
         statement += `Amount owed is ${getTotalAmount(customer)}\n`;
-        statement += `You earned ${getTotalFrequentRenterPoints(customer)} frequent renter points\n`;
+        statement += `You earned ${customer.totalFrequentRenterPoints} frequent renter points\n`;
         return statement;
     }
 
@@ -52,7 +42,7 @@ function txtStatement(customerArr, movies) {
 function htmlStatement(customerArr, movies) {
     const customer = new Customer(customerArr, movies);
     const amount = () => getTotalAmount(customer);
-    const frequentRenterPoints = () => getTotalFrequentRenterPoints(customer);
+    const frequentRenterPoints = () => customer.totalFrequentRenterPoints;
     const movie = (aRental) => aRental.movie;
     const rentalAmount = (aRental) => aRental.amount;
     let result = `<h1>Rental Record for <em>${customer.name}</em></h1>\n`;
