@@ -48,14 +48,13 @@ class Rentals {
 
     get amount() {
         const calculator = new Calculator(this.days);
-        const amount = {
+        return {
             "regular": calculator.amountForRegular,
 
             "new": calculator.amountForNew,
 
             "childrens": calculator.amountForChildren
-        };
-        return amount[this.movie.code];
+        }[this.movie.code];
 
     }
 
