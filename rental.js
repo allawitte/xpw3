@@ -21,10 +21,7 @@ class Rentals {
         // determine amount for each movie
         switch (this.movie.code) {
             case "regular":
-                amount = 2;
-                if (this.days > 2) {
-                    amount += (this.days - 2) * 1.5;
-                }
+                amount = this.amountForRegular();
                 break;
             case "new":
                 amount = this.days * 3;
@@ -39,6 +36,14 @@ class Rentals {
 
         return amount;
 
+    }
+
+    amountForRegular() {
+        let amount = 2;
+        if (this.days > 2) {
+            amount += (this.days - 2) * 1.5;
+        }
+        return amount;
     }
 }
 module.exports = Rentals;
