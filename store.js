@@ -3,12 +3,13 @@
 const Customer = require('./customer');
 
 function getTotalFrequentRenterPoints(customer) {
-    let totalFrequentRenterPoints = 0;
-    for (let rental of customer.rentals) {
-        totalFrequentRenterPoints += rental.frequentRenterPoints;
-    }
-
-    return totalFrequentRenterPoints;
+    return customer.totalFrequentRenterPoints;
+    // let totalFrequentRenterPoints = 0;
+    // for (let rental of customer.rentals) {
+    //     totalFrequentRenterPoints += rental.frequentRenterPoints;
+    // }
+    //
+    // return totalFrequentRenterPoints;
 }
 
 function getTotalAmount(customer) {
