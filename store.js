@@ -2,30 +2,7 @@
 
 const Customer = require('./customer');
 const txtBuilder = require('./txtBuilder');
-
-class htmlBuilder {
-    constructor(customer, movies){
-        this._customer = new Customer(customer, movies);
-        this._movies = movies;
-    }
-    static get buildHeader(){
-        return `<h1>Rental Record for <em>${customer.name}</em></h1>\n`;
-    }
-    get buildBody(){
-         let result = this._customer.rentals
-             .map( rental => `<tr><td>${rental.movie.title}</td><td>${rental.amount}</td></tr>\n`)
-             .reduce((a,b) => a+b, "<table>\n");
-        result += "</table>\n";
-        return result;
-    }
-    get buildFooter(){
-        return [
-            `<p>Amount owed is <em>${(() => this._customer.totalAmount)()}</em></p>\n`,
-            `<p>You earned <em>${(() => this._customer.totalFrequentRenterPoints)()}</em> frequent renter points</p>\n`
-        ]
-            .reduce((a,b)=> a+b);
-    }
-}
+const htmlBuilder = require('./htmlBuilder');
 function txtStatement(customerArr, movies) {
 
     const builder = new txtBuilder(customerArr, movies);
@@ -39,7 +16,7 @@ function txtStatement(customerArr, movies) {
 function htmlStatement(customerArr, movies) {
     const customer = new Customer(customerArr, movies);
     const builder = new htmlBuilder(customer, movies);
-    let result = htmlBuilder.buildHeader;
+    let result = builder.buildHeader;
     result += builder.buildBody;
     result += builder.buildFooter;
     return result;
