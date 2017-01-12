@@ -15,11 +15,11 @@ class txtBuilder {
 
     }
     get buildFooter(){
-        let statement = '';
-        statement += `Amount owed is ${this._customer.totalAmount}\n`;
-        statement += `You earned ${this._customer.totalFrequentRenterPoints} frequent renter points\n`;
-        return statement;
-
+      return  [
+            `Amount owed is ${this._customer.totalAmount}\n`,
+            `You earned ${this._customer.totalFrequentRenterPoints} frequent renter points\n`
+        ]
+          .reduce((a,b)=> a+b);
     }
 }
 module.exports = txtBuilder;
