@@ -9,12 +9,9 @@ class txtBuilder {
         return `Rental Record for ${this._customer.name}\n`;
     }
     get buildBody(){
-        let statement = '';
-        for (let rental of this._customer.rentals) {
-            statement += `\t${rental.movie.title}\t${rental.amount}\n`;
-        }
-
-        return statement;
+        return this._customer.rentals
+            .map(rental => `\t${rental.movie.title}\t${rental.amount}\n`)
+            .reduce((a,b)=>a+b);
 
     }
     get buildFooter(){
