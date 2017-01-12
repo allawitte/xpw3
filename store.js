@@ -19,11 +19,10 @@ class htmlBuilder {
         return result;
     }
     get buildFooter(){
-        let footerLines = [
+        return [
             `<p>Amount owed is <em>${(() => this._customer.totalAmount)()}</em></p>\n`,
             `<p>You earned <em>${(() => this._customer.totalFrequentRenterPoints)()}</em> frequent renter points</p>\n`
-        ];
-        return footerLines
+        ]
             .reduce((a,b)=> a+b);
     }
 }
