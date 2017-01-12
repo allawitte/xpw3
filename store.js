@@ -12,10 +12,9 @@ class htmlBuilder {
         return `<h1>Rental Record for <em>${customer.name}</em></h1>\n`;
     }
     get buildBody(){
-        let result = "<table>\n";
-        for (let rental of this._customer.rentals) {
-            result += `  <tr><td>${((aRental) => aRental.movie)(rental).title}</td><td>${((aRental) => aRental.amount)(rental)}</td></tr>\n`;
-        }
+         let result = this._customer.rentals
+             .map( rental => `<tr><td>${rental.movie.title}</td><td>${rental.amount}</td></tr>\n`)
+             .reduce((a,b) => a+b, "<table>\n");
         result += "</table>\n";
         return result;
     }
