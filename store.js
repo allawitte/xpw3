@@ -19,9 +19,12 @@ class htmlBuilder {
         return result;
     }
     get buildFooter(){
-        let result = `<p>Amount owed is <em>${(() => this._customer.totalAmount)()}</em></p>\n`;
-        result += `<p>You earned <em>${(() => this._customer.totalFrequentRenterPoints)()}</em> frequent renter points</p>\n`;
-        return result;
+        let footerLines = [
+            `<p>Amount owed is <em>${(() => this._customer.totalAmount)()}</em></p>\n`,
+            `<p>You earned <em>${(() => this._customer.totalFrequentRenterPoints)()}</em> frequent renter points</p>\n`
+        ];
+        return footerLines
+            .reduce((a,b)=> a+b);
     }
 }
 function txtStatement(customerArr, movies) {
